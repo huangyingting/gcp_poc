@@ -1,0 +1,17 @@
+server {
+  listen 80;
+  listen  [::]:80;
+  server_name  localhost;  
+  location / {
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+    # Set it to different value depending on your standard requirements
+    # expires -1;
+    add_header X-GCE-NAME "${GCE_NAME}";
+    add_header X-GCE-PRIVATE-IP "${GCE_PRIVATE_IP}";
+  }
+  error_page 404 /404.html;
+  location = /404.html {
+    root   /usr/share/nginx/html;
+  }
+}
