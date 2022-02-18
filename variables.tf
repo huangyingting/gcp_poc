@@ -1,7 +1,7 @@
 variable "vpc_pid" {
   type        = string
   description = "GCP project ID of the host project."
-  default     = "gcp-poc-8102795"
+  default     = "gcp-poc-5703634"
 }
 
 variable "region1" {
@@ -76,6 +76,6 @@ variable "azure_subscription_id" {
 }
 
 variable "azure_tenant_id" {
-  type    = strig
+  type    = string
   default = ""
 }

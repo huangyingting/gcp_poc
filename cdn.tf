@@ -25,6 +25,7 @@ resource "google_compute_backend_service" "web_cdn" {
   custom_request_headers  = ["X-Client-Geo-Location: {client_region_subdivision}, {client_city}"]
   custom_response_headers = ["X-Cache-Hit: {cdn_cache_status}"]
   health_checks           = [google_compute_health_check.web_http.id]
+  security_policy         = google_compute_security_policy.web_cdn.id
   backend {
     group                 = google_compute_region_instance_group_manager.web.instance_group
     balancing_mode        = "RATE"
@@ -56,7 +57,7 @@ resource "google_compute_url_map" "web_cdn" {
   default_service = google_compute_backend_service.web_cdn.id
 
   host_rule {
-    hosts        = ["cdn.${var.domain_name}"]
+    hosts = ["cdn.${var.domain_name}"]
     # hosts        = ["*"]
     path_matcher = "allpaths"
   }
@@ -84,9 +85,9 @@ resource "google_compute_ssl_certificate" "web_cdn" {
 
 # HTTPS proxy
 resource "google_compute_target_https_proxy" "web_cdn" {
-  provider = google-beta
-  name     = "thp-web-cdn"
-  url_map  = google_compute_url_map.web_cdn.id
+  provider         = google-beta
+  name             = "thp-web-cdn"
+  url_map          = google_compute_url_map.web_cdn.id
   ssl_certificates = [google_compute_ssl_certificate.web_cdn.id]
 }
 
@@ -117,7 +118,7 @@ resource "google_compute_url_map" "redirect" {
       paths = ["/*"]
       url_redirect {
         https_redirect         = true
-        host_redirect          = "cdn.${var.domain_name}:443"        
+        host_redirect          = "cdn.${var.domain_name}:443"
         redirect_response_code = "PERMANENT_REDIRECT"
         strip_query            = true
       }
