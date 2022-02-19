@@ -17,7 +17,7 @@ resource "google_compute_instance_template" "web" {
   }
   network_interface {
     network = google_compute_network.poc.id
-    subnetwork = google_compute_subnetwork.web.id
+    subnetwork = google_compute_subnetwork.web_region1.id
   }
   metadata = {
     startup-script = <<-EOF
@@ -67,7 +67,7 @@ resource "google_compute_region_instance_group_manager" "web" {
     create_before_destroy = true
   }
   depends_on = [
-    google_compute_router_nat.nat
+    google_compute_router_nat.nat_region1
   ]
 }
 

@@ -111,7 +111,7 @@ resource "google_compute_forwarding_rule" "web_proxy" {
   target                = google_compute_region_target_https_proxy.web_proxy.id
   network               = google_compute_network.poc.id
   network_tier          = "STANDARD"
-  depends_on            = [google_compute_subnetwork.proxy]
+  depends_on            = [google_compute_subnetwork.proxy_region1]
 }
 
 # Http to https redirect
@@ -157,5 +157,5 @@ resource "google_compute_forwarding_rule" "redirect" {
   target                = google_compute_region_target_http_proxy.redirect.id
   network               = google_compute_network.poc.id
   network_tier          = "STANDARD"
-  depends_on            = [google_compute_subnetwork.proxy]
+  depends_on            = [google_compute_subnetwork.proxy_region1]
 }

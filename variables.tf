@@ -3,10 +3,14 @@ variable "billing_account" {
   description = "GCP billing account"
 }
 
+variable "org_id" {
+  type = string
+  description = "GCP Organization ID"
+}
+
 variable "vpc_pid" {
   type        = string
   description = "GCP project ID of the host project."
-  default     = "gcp-poc-5703634"
 }
 
 variable "region1" {
