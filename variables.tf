@@ -1,3 +1,8 @@
+variable "billing_account" {
+  type = string
+  description = "GCP billing account"
+}
+
 variable "vpc_pid" {
   type        = string
   description = "GCP project ID of the host project."
@@ -42,40 +47,40 @@ variable "bucket_location" {
 
 variable "email_address" {
   type    = string
-  default = ""
 }
 
 variable "domain_name" {
   type    = string
-  default = ""
 }
 
 variable "certificate_name" {
   type    = string
-  default = ""
 }
 
 variable "dns_zone_resource_group_name" {
   type    = string
-  default = ""
 }
 
 variable "azure_client_id" {
   type    = string
-  default = ""
 }
 
 variable "azure_client_secret" {
   type    = string
-  default = ""
 }
 
 variable "azure_subscription_id" {
   type    = string
-  default = ""
 }
 
 variable "azure_tenant_id" {
   type    = string
-  default = ""
+}
+
+variable "db_username" {
+  type = string
+}
+
+variable "db_password" {
+  type = string
 }
